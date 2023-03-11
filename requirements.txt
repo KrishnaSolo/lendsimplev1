@@ -1,0 +1,12 @@
+Flask==2.0.2
+Flask-RESTful==0.3.9
+Flask-HTTPAuth==4.3.0
+SQLAlchemy==1.4.23
+PyMySQL==1.0.2
+google-auth==2.3.0
+google-auth-oauthlib==0.4.6
+google-auth-httplib2==0.1.0
+google-cloud-secret-manager==2.7.0
+plooto==1.1.0
+flinks==2.2.2
+pyjwt==2.3.0
