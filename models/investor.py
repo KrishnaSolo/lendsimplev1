@@ -1,5 +1,5 @@
 # Investor model code
-from app import db
+from .. import db
 
 
 class Investor(db.Model):

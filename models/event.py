@@ -1,5 +1,5 @@
 # Event model code
-from app import db
+from .. import db
 
 
 class InvestingEvent(db.Model):

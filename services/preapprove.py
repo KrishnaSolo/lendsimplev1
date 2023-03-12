@@ -1,13 +1,12 @@
 # Preapprove service code
 from flask import Blueprint, request, jsonify
 from google.cloud import logging
-import plooto
-import flink_api
+from ..services.flinks_service import FlinksService
 
-from app.models.investor import Investor
-from app.models.event import Event
-from app.utils.logging import log_decorator
-from app.utils.metrics import metric_decorator
+from ..models.investor import Investor
+from ..models.event import InvestingEvent as Event
+from ..utils.logging import log_decorator
+from ..utils.metrics import metric_decorator
 
 pre_approve_bp = Blueprint("pre_approve_bp", __name__)
 
@@ -68,9 +67,8 @@ def pre_approve():
         )
 
     # check if investor has enough balance to invest
-    flink_token = investor.flink_token
-    bank_balance = flink_api.get_bank_balance(flink_token)
-    if bank_balance < amount:
+    bank_accnt_id = investor.bank_account_id
+    if FlinksService.check_balance(bank_accnt_id, amount):
         logger.warning(
             f"Investor {investor_id} does not have enough balance to invest ${amount}."
         )

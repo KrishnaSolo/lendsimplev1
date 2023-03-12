@@ -1,5 +1,5 @@
 # Bank_account model code
-from app import db
+from . import db
 
 
 class BankAccount(db.Model):

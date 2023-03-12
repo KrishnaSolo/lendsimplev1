@@ -1,13 +1,13 @@
 # Approve service code
 import threading
 import time
-from app import db, app
-from app.models.event import Event
-from app.models.investment import Investment
-from app.models.notification import Notification
-from app.services.book_of_records import BookOfRecords
-from app.services.payment import Payment
-from app.utils.logging import log_execution_time
+from . import db, app
+from ..models.event import InvestingEvent as Event
+from ..models.investment import Investment
+from ..models.notification import Notification
+from ..services.book_of_records import BookOfRecords
+from ..services.payments import Payment
+from ..utils.logging import log_execution_time
 
 approval_queue = []
 
