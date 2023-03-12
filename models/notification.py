@@ -1,5 +1,5 @@
 # Notification model code
-from app import db
+from .. import db
 from datetime import datetime
 
 

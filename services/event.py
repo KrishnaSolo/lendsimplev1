@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from google.cloud.ndb import Cursor
 from datetime import datetime, timezone
 
-from ..models.event import Event
+from ..models.event import InvestingEvent as Event
 from ..models.property import Property
 from ..utils.auth import token_required
 from ..utils.metrics import record_metrics
