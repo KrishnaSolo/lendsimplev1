@@ -1,5 +1,7 @@
 from plaid.errors import APIError, ItemError
 from plaid import Client
+from ..models.investor import Investor
+from ..models.bank_account import BankAccount
 
 from ..utils.logging import log_and_time
 from ..config import Config

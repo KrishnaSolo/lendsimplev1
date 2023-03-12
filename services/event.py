@@ -1,6 +1,5 @@
 # Event service code
 from flask import Blueprint, jsonify, request
-from google.cloud.ndb import Cursor
 from datetime import datetime, timezone
 
 from ..models.event import InvestingEvent as Event
@@ -34,7 +33,7 @@ def get_all_events():
             end_date = datetime.strptime(end_date, "%Y-%m-%d")
             end_date = end_date.replace(tzinfo=timezone.utc)
 
-        cursor = Cursor(urlsafe=cursor_str) if cursor_str else None
+        cursor = cursor_str if cursor_str else None
 
         # Query events and properties, filtering by dates if present
         query = Event.query(Event.active == True)
@@ -57,7 +56,7 @@ def get_all_events():
 
         response = {"events": event_data}
         if more and next_cursor:
-            response["next_cursor"] = next_cursor.urlsafe()
+            response["next_cursor"] = next_cursor
 
         return jsonify(response)
 
