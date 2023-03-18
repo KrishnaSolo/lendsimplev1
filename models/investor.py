@@ -1,14 +1,14 @@
 # Investor model code
-from .. import db
+from ..database import db
+from .user import User
+from .bank_account import BankAccount
 
 
 class Investor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(
-        db.Integer, db.ForeignKey("user.id"), nullable=False, unique=True
-    )
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False, unique=True)
     bank_account_id = db.Column(
-        db.Integer, db.ForeignKey("bank_account.id"), nullable=False
+        db.Integer, db.ForeignKey(BankAccount.id), nullable=False
     )
 
     def __repr__(self):

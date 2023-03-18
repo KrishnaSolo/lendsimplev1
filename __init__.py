@@ -1,6 +1,6 @@
 from flask import Flask
 from .config import Config
-from .database import db
+from .database import init_db
 from .services.auth import auth_bp
 from .services.investor import investor_bp
 from .services.property import property_blueprint as property_bp
@@ -14,7 +14,7 @@ def create_app():
     app.config.from_object(Config)
 
     # Initialize database
-    db.init_db(app)
+    init_db(app)
     logger = setup_logging()
     # Register blueprints
     app.register_blueprint(auth_bp)

@@ -1,5 +1,5 @@
 # Portfolio model code
-from .. import db
+from ..database import db
 
 
 class Portfolio(db.Model):

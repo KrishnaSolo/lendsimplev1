@@ -1,5 +1,4 @@
 from ..models.book_of_records import BookOfRecords
-from ..utils import log_metric, log_info
 
 
 class BookOfRecordsService:
@@ -21,7 +20,7 @@ class BookOfRecordsService:
             amount (float): The amount of money being transferred.
             description (str): The description of the transaction.
         """
-        log_info(f"Recording transaction: {description}")
+
         BookOfRecords.record_transaction(
             investment_id=investment_id,
             from_account_id=from_account_id,
@@ -29,4 +28,3 @@ class BookOfRecordsService:
             amount=amount,
             description=description,
         )
-        log_metric("transaction_recorded", amount)

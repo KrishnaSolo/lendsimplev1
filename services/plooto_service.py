@@ -3,7 +3,7 @@ from plaid import Client
 from ..models.investor import Investor
 from ..models.bank_account import BankAccount
 
-from ..utils.logging import log_and_time
+from ..utils.logging import record_execution_time
 from ..config import Config
 
 import time
@@ -18,7 +18,7 @@ client = Client(
 
 class PlootoService:
     @staticmethod
-    @log_and_time
+    @record_execution_time
     @retry(
         stop_max_attempt_number=4,
         wait_exponential_multiplier=1000,

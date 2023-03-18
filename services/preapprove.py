@@ -1,21 +1,19 @@
 # Preapprove service code
 from flask import Blueprint, request, jsonify
-from google.cloud import logging
 from ..services.flinks_service import FlinksService
 
 from ..models.investor import Investor
 from ..models.event import InvestingEvent as Event
-from ..utils.logging import log_decorator
-from ..utils.metrics import metric_decorator
+from ..utils.logging import record_execution_time, setup_logging
 
 pre_approve_bp = Blueprint("pre_approve_bp", __name__)
 
-logger = logging.Client().logger("pre_approve_service")
+logger = setup_logging()
 
 
 @pre_approve_bp.route("/pre-approve", methods=["POST"])
-@metric_decorator
-@log_decorator(logger)
+# @metric_decorator
+@record_execution_time
 def pre_approve():
     """
     Check if investor has enough balance to invest without exceeding target amount.

@@ -1,5 +1,5 @@
 # Property model code
-from .. import db
+from ..database import db
 
 
 class Property(db.Model):

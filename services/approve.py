@@ -1,18 +1,19 @@
 # Approve service code
 import threading
 import time
-from . import db, app
+from ..main import app
+from ..database import db
 from ..models.event import InvestingEvent as Event
 from ..models.investment import Investment
 from ..models.notification import Notification
 from ..services.book_of_records import BookOfRecords
-from ..services.payments import Payment
-from ..utils.logging import log_execution_time
+from ..services.payments import PaymentService
+from ..utils.logging import record_execution_time
 
 approval_queue = []
 
 
-@log_execution_time
+@record_execution_time
 def process_approval_queue():
     while True:
         if approval_queue:
@@ -43,7 +44,7 @@ def process_approval_queue():
                     db.session.flush()
                     try:
                         # Make the payment using Plooto
-                        Payment.make_payment(
+                        PaymentService.make_payment(
                             investor_id=investor_id,
                             holding_account_id=event.holding_account_id,
                             amount=amount,

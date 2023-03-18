@@ -5,16 +5,15 @@ from datetime import datetime, timezone
 from ..models.event import InvestingEvent as Event
 from ..models.property import Property
 from ..utils.auth import token_required
-from ..utils.metrics import record_metrics
-from ..utils.logging import get_logger
+from ..utils.logging import setup_logging
 
-logger = get_logger(__name__)
+logger = setup_logging()
 event_bp = Blueprint("event", __name__, url_prefix="/api/events")
 
 
 @event_bp.route("/", methods=["GET"])
 @token_required
-@record_metrics
+# @record_metrics
 def get_all_events():
     """
     Get a paginated list of all events, with optional filters for start and end dates.

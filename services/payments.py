@@ -4,11 +4,12 @@ from ..services.plooto_service import PlootoService
 
 from ..services.flinks_service import FlinksService
 
-from ..utils import get_logger
+from ..utils.logging import setup_logging
 from ..config import Config
-from ..models import Investor, InvestingEvent as Event
+from ..models.investor import Investor
+from ..models.event import InvestingEvent as Event
 
-logger = get_logger(__name__)
+logger = setup_logging()
 
 
 class PaymentService:

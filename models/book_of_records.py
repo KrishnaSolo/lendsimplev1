@@ -1,5 +1,5 @@
 # Book_of_records model code
-from . import db
+from ..database import db
 
 
 class BookOfRecords(db.Model):

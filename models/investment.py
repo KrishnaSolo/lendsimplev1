@@ -1,5 +1,5 @@
 # Investment model code
-from .. import db
+from ..database import db
 
 
 class Investment(db.Model):
