@@ -1,7 +1,8 @@
 import unittest
 import json
-from app import create_app, db
-from app.models.investor import Investor
+from .. import create_app
+from database import db
+from models.investor import Investor
 
 
 class InvestorServiceTest(unittest.TestCase):

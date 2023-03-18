@@ -1,8 +1,8 @@
 # Property service code
 from flask import Blueprint, jsonify
 
-from ..models.property import Property
-from ..models.event import InvestingEvent as Event
+from backend.models.property import Property
+from backend.models.event import InvestingEvent as Event
 
 property_blueprint = Blueprint("property", __name__, url_prefix="/api/property")
 

@@ -1,12 +1,12 @@
 from flask import Flask
-from .config import Config
-from .database import init_db
-from .services.auth import auth_bp
-from .services.investor import investor_bp
-from .services.property import property_blueprint as property_bp
-from .services.event import event_bp
-from .services.preapprove import pre_approve_bp as preapprove_bp
-from .utils.logging import setup_logging
+from backend.config import Config
+from backend.database import init_db
+from backend.services.auth import auth_bp
+from backend.services.investor import investor_bp
+from backend.services.property import property_blueprint as property_bp
+from backend.services.event import event_bp
+from backend.services.preapprove import pre_approve_bp as preapprove_bp
+from backend.utils.logging import setup_logging
 
 
 def create_app():

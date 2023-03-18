@@ -1,14 +1,14 @@
 # Approve service code
 import threading
 import time
-from ..main import app
-from ..database import db
-from ..models.event import InvestingEvent as Event
-from ..models.investment import Investment
-from ..models.notification import Notification
-from ..services.book_of_records import BookOfRecords
-from ..services.payments import PaymentService
-from ..utils.logging import record_execution_time
+from main import app
+from backend.database import db
+from backend.models.event import InvestingEvent as Event
+from backend.models.investment import Investment
+from backend.models.notification import Notification
+from backend.services.book_of_records import BookOfRecords
+from backend.services.payments import PaymentService
+from backend.utils.logging import record_execution_time
 
 approval_queue = []
 

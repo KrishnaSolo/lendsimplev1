@@ -1,4 +1,4 @@
-from ..models.book_of_records import BookOfRecords
+from backend.models.book_of_records import BookOfRecords
 
 
 class BookOfRecordsService:

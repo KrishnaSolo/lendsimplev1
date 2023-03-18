@@ -3,7 +3,8 @@ import unittest
 from flask import Flask
 from flask_testing import TestCase
 
-from app import create_app, db
+from .. import create_app
+from database import db
 
 
 class TestBase(TestCase):

@@ -1,7 +1,8 @@
 import unittest
-from app import create_app, db
-from app.models import BankAccount, Event, Investment, Notification, User
-from app.services.approve import approve_investors
+from .. import create_app
+from database import db
+from models import BankAccount, Event, Investment, Notification, User
+from services.approve import approve_investors
 
 
 class ApproveServiceTestCase(unittest.TestCase):

@@ -2,9 +2,9 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.exceptions import BadRequest
 
-from ..models.investor import Investor
-from ..database import db
-from ..utils.logging import record_execution_time
+from backend.models.investor import Investor
+from backend.database import db
+from backend.utils.logging import record_execution_time
 
 investor_bp = Blueprint("investor", __name__, url_prefix="/api/investor")
 

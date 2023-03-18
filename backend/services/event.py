@@ -2,10 +2,10 @@
 from flask import Blueprint, jsonify, request
 from datetime import datetime, timezone
 
-from ..models.event import InvestingEvent as Event
-from ..models.property import Property
-from ..utils.auth import token_required
-from ..utils.logging import setup_logging
+from backend.models.event import InvestingEvent as Event
+from backend.models.property import Property
+from backend.utils.auth import token_required
+from backend.utils.logging import setup_logging
 
 logger = setup_logging()
 event_bp = Blueprint("event", __name__, url_prefix="/api/events")

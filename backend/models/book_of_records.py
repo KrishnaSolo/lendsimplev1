@@ -1,5 +1,5 @@
 # Book_of_records model code
-from ..database import db
+from backend.database import db
 
 
 class BookOfRecords(db.Model):

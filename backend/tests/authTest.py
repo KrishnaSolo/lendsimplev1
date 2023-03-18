@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
-from app import create_app, db
-from app.models.user import User
+from .. import create_app
+from models.user import User
 
 
 class AuthTestCase(unittest.TestCase):

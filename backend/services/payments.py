@@ -1,13 +1,11 @@
 from typing import Optional
 
-from ..services.plooto_service import PlootoService
+from backend.services.plooto_service import PlootoService
 
-from ..services.flinks_service import FlinksService
-
-from ..utils.logging import setup_logging
-from ..config import Config
-from ..models.investor import Investor
-from ..models.event import InvestingEvent as Event
+from backend.services.flinks_service import FlinksService
+from backend.utils.logging import setup_logging
+from backend.models.investor import Investor
+from backend.models.event import InvestingEvent as Event
 
 logger = setup_logging()
 

@@ -1,10 +1,10 @@
 # Preapprove service code
 from flask import Blueprint, request, jsonify
-from ..services.flinks_service import FlinksService
+from backend.services.flinks_service import FlinksService
 
-from ..models.investor import Investor
-from ..models.event import InvestingEvent as Event
-from ..utils.logging import record_execution_time, setup_logging
+from backend.models.investor import Investor
+from backend.models.event import InvestingEvent as Event
+from backend.utils.logging import record_execution_time, setup_logging
 
 pre_approve_bp = Blueprint("pre_approve_bp", __name__)
 

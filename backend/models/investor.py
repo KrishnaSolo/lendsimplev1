@@ -1,7 +1,7 @@
 # Investor model code
-from ..database import db
-from .user import User
-from .bank_account import BankAccount
+from backend.database import db
+from backend.models.user import User
+from backend.models.bank_account import BankAccount
 
 
 class Investor(db.Model):

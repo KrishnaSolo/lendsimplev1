@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from app.services.property import PropertyService
+from services.property import PropertyService
 
 
 class TestPropertyService(unittest.TestCase):

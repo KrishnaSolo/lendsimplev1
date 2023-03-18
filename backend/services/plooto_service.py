@@ -1,10 +1,10 @@
 from plaid.errors import APIError, ItemError
 from plaid import Client
-from ..models.investor import Investor
-from ..models.bank_account import BankAccount
+from backend.models.investor import Investor
+from backend.models.bank_account import BankAccount
 
-from ..utils.logging import record_execution_time
-from ..config import Config
+from backend.utils.logging import record_execution_time
+from backend.config import Config
 
 import time
 from retrying import retry

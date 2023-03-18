@@ -1,6 +1,7 @@
 import pytest
 import json
-from app.services.event import EventService
+from .. import create_app
+from services.event import EventService
 
 
 @pytest.fixture
