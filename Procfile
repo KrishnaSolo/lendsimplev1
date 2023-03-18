@@ -1,1 +1,1 @@
-web: gunicorn main:app
+web: env PYTHONPATH=$(dirname $0) gunicorn main:app
