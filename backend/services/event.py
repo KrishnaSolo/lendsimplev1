@@ -12,7 +12,6 @@ event_bp = Blueprint("event", __name__, url_prefix="/api/events")
 
 
 @event_bp.route("/", methods=["GET"])
-@token_required
 # @record_metrics
 def get_all_events():
     """

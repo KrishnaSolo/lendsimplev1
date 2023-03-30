@@ -74,10 +74,3 @@ def delete_investor(investor_id):
     except Exception as e:
         db.session.rollback()
         raise e
-
-
-@investor_bp.route("/", methods=["GET"])
-@record_execution_time
-def get_all_investors():
-    investors = Investor.query.all()
-    return jsonify([investor.to_dict() for investor in investors])

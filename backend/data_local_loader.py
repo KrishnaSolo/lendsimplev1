@@ -11,7 +11,7 @@ from backend.database import db
 
 def insert_example_data():
     # Drop db
-    db.drop_all()
+    # db.drop_all()
     # Create LocationScore
     location_score = LocationScore(transit=80, walking=80, biking=82)
 
