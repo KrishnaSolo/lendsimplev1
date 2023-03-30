@@ -1,4 +1,5 @@
 from flask import Flask
+from backend.services.property import PropertyEncoder
 from backend.config import Config
 from backend.database import init_db
 from backend.services.auth import auth_bp
@@ -12,6 +13,7 @@ from backend.utils.logging import setup_logging
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.json_encoder = PropertyEncoder
 
     # Initialize database
     init_db(app)

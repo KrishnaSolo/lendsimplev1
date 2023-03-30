@@ -25,3 +25,6 @@ def init_db(app):
 
     with app.app_context():
         db.create_all()
+        from backend.data_local_loader import insert_example_data
+
+        insert_example_data()

@@ -9,7 +9,7 @@ from backend.utils.logging import record_execution_time
 investor_bp = Blueprint("investor", __name__, url_prefix="/api/investor")
 
 
-@investor_bp.route("/", methods=["POST"])
+@investor_bp.route("/new", methods=["POST"])
 @record_execution_time
 def create_investor():
     try:
@@ -32,6 +32,15 @@ def get_investor(investor_id):
     if not investor:
         raise BadRequest(f"Investor with ID {investor_id} not found")
     return jsonify(investor.to_dict())
+
+
+@investor_bp.route("/admin/", methods=["GET"])
+@record_execution_time
+def get_all_investors():
+    investors = Investor.query.all()
+    if not len(investors):
+        raise BadRequest(f"Investors not found")
+    return jsonify([investor.to_dict() for investor in investors])
 
 
 @investor_bp.route("/<investor_id>", methods=["PUT"])
