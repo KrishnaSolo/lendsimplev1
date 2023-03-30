@@ -17,7 +17,7 @@ def init_db(app):
         app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     else:
         # Local development database configuration
-        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///demo.db"
 
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
