@@ -13,3 +13,14 @@ class InvestingEvent(db.Model):
 
     def __repr__(self):
         return f"<InvestingEvent {self.id}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "property_id": self.property_id,
+            "start_date": self.start_date.strftime("%Y-%m-%d %H:%M:%S"),
+            "end_date": self.end_date.strftime("%Y-%m-%d %H:%M:%S"),
+            "target_amount": self.target_amount,
+            "amount_raised": self.amount_raised,
+            "active": self.active,
+        }

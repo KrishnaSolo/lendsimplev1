@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request
 from datetime import datetime, timezone
 
 from backend.models.event import InvestingEvent as Event
+from backend.database import db
 from backend.models.property import Property
 from backend.utils.auth import token_required
 from backend.utils.logging import setup_logging
@@ -34,17 +35,17 @@ def get_all_events():
         cursor = cursor_str if cursor_str else None
 
         # Query events and properties, filtering by dates if present
-        query = Event.query(Event.active == True)
+        query = Event.query.filter_by(active=True)
         if start_date:
             query = query.filter(Event.start_date >= start_date)
         if end_date:
             query = query.filter(Event.end_date <= end_date)
-        events, next_cursor, more = query.fetch_page(limit, start_cursor=cursor)
+        events = query.limit(limit).offset(cursor).all()
 
         # Get property information for each event
         event_data = []
         for event in events:
-            property_obj = Property.get_by_id(event.property_id)
+            property_obj = db.session.query(Property).get(event.property_id)
             if not property_obj:
                 logger.error(f"Property not found for event {event.key.id()}")
                 continue
@@ -53,8 +54,9 @@ def get_all_events():
             event_data.append(event_dict)
 
         response = {"events": event_data}
-        if more and next_cursor:
-            response["next_cursor"] = next_cursor
+        more = len(events) == limit
+        if more:
+            response["next_cursor"] = cursor + limit
 
         return jsonify(response)
 

@@ -11,3 +11,12 @@ class BankAccount(db.Model):
 
     def __repr__(self):
         return f"<BankAccount {self.id}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "account_number": self.account_number,
+            "institution_number": self.institution_number,
+            "transit_number": self.transit_number,
+        }

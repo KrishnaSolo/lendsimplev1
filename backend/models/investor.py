@@ -13,3 +13,10 @@ class Investor(db.Model):
 
     def __repr__(self):
         return f"<Investor {self.id}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "bank_account_id": self.bank_account_id,
+        }

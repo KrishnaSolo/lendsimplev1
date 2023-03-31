@@ -10,3 +10,11 @@ class Portfolio(db.Model):
 
     def __repr__(self):
         return f"<Portfolio {self.id}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "investor_id": self.investor_id,
+            "event_id": self.event_id,
+            "amount": self.amount,
+        }

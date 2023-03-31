@@ -13,3 +13,12 @@ class BookOfRecords(db.Model):
 
     def __repr__(self):
         return f"<BookOfRecords {self.id}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "investor_id": self.investor_id,
+            "property_id": self.property_id,
+            "event_id": self.event_id,
+            "amount": self.amount,
+        }

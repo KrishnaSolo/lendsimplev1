@@ -27,11 +27,42 @@ class Property(db.Model):
     )
     investment_type = db.relationship("InvestmentType", back_populates="properties")
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "address": self.address,
+            "type": self.type,
+            "investment_needed": self.investment_needed,
+            "investment_gained": self.investment_gained,
+            "image": self.image,
+            "detailed_description": self.detailed_description,
+            "annual_yield": self.annual_yield,
+            "target_irr": self.target_irr,
+            "ant_term": self.ant_term,
+            "avg_ltv": self.avg_ltv,
+            "highlights": [highlight.description for highlight in self.highlights],
+            "location_score": {
+                "transit": self.location_score.transit,
+                "walking": self.location_score.walking,
+                "biking": self.location_score.biking,
+            },
+            "investment_type": {
+                "type": self.investment_type.type,
+                "definition": self.investment_type.definition,
+                "target": self.investment_type.target,
+            },
+        }
+
 
 class Highlight(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.Text, nullable=False)
     property_id = db.Column(db.Integer, db.ForeignKey("property.id"), nullable=False)
+
+    def to_dict(self):
+        return {"id": self.id, "description": self.description}
 
 
 class LocationScore(db.Model):
@@ -42,6 +73,14 @@ class LocationScore(db.Model):
 
     properties = db.relationship("Property", back_populates="location_score")
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "transit": self.transit,
+            "walking": self.walking,
+            "biking": self.biking,
+        }
+
 
 class InvestmentType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -50,3 +89,11 @@ class InvestmentType(db.Model):
     target = db.Column(db.Text, nullable=False)
 
     properties = db.relationship("Property", back_populates="investment_type")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "type": self.type,
+            "definition": self.definition,
+            "target": self.target,
+        }
