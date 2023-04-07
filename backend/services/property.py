@@ -2,6 +2,7 @@
 from json import JSONEncoder
 from typing import List
 from flask import Blueprint, jsonify, current_app
+from flask_cors import cross_origin
 from backend.utils.logging import setup_logging
 
 from backend.models.property import Property
@@ -41,6 +42,7 @@ class PropertyEncoder(JSONEncoder):
 
 
 @property_blueprint.route("/get_listings", methods=["GET"])
+@cross_origin()
 def get_listings():
     # Get all active events
     print(Event.query.all())

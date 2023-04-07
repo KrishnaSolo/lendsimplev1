@@ -8,10 +8,12 @@ from backend.services.property import property_blueprint as property_bp
 from backend.services.event import event_bp
 from backend.services.preapprove import pre_approve_bp as preapprove_bp
 from backend.utils.logging import setup_logging
+from flask_cors import CORS
 
 
 def create_app():
     app = Flask(__name__)
+    cors = CORS(app)
     app.config.from_object(Config)
     app.json_encoder = PropertyEncoder
 

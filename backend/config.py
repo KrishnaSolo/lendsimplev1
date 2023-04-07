@@ -18,5 +18,6 @@ class Config:
 
     # Google Cloud credentials
     GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    CORS_HEADERS = "Content-Type"
 
     # Other config settings...
