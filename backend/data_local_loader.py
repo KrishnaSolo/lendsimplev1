@@ -43,12 +43,16 @@ def insert_example_data(data):
             location_score=location_score,
             investment_type=investment_type,
         )
+
+        # Create Highlights
+        for highlight in prop["highlights"]:
+            highlight = Highlight(description=highlight)
+            property_data.highlights.append(highlight)
+            db.session.add(highlight)
+
         db.session.add(property_data)
         db.session.commit()
         print(property_data.id)
-        # Create Highlights
-        for highlight in prop["highlights"]:
-            property_data.highlights.append(Highlight(description=highlight))
 
         # Create a new Event object
         new_event = Event(
@@ -65,4 +69,4 @@ def insert_example_data(data):
         db.session.commit()
         events = Highlight.query.all()
         for event in events:
-            print(event.id, event.property_id)
+            print(event.id, event.property_id, event)

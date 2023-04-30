@@ -70,7 +70,7 @@ def get_listings():
                     "target_irr": property.target_irr,
                     "ant_term": property.ant_term,
                     "avg_ltv": property.avg_ltv,
-                    "highlights": highlights[0].description,
+                    "highlights": [highlight.description for highlight in highlights],
                     "location_score": {
                         "transit": property.location_score.transit,
                         "walking": property.location_score.walking,
