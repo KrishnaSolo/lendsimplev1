@@ -1,5 +1,5 @@
 # Preapprove service code
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app as app
 from backend.services.flinks_service import FlinksService
 
 from backend.models.investor import Investor
@@ -18,6 +18,7 @@ def pre_approve():
     """
     Check if investor has enough balance to invest without exceeding target amount.
     """
+    app.logger.info(f"Handling pre_approve request:{request}.")
     data = request.get_json()
 
     investor_id = data.get("investor_id")
@@ -86,7 +87,7 @@ def pre_approve():
         {"investor_id": investor_id, "event_id": event_id, "amount": amount}
     )
 
-    logger.info(
+    app.logger.info(
         f"Investor {investor_id} pre-approved for investing ${amount} in event {event_id}."
     )
     return (

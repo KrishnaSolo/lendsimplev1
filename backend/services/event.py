@@ -1,5 +1,5 @@
 # Event service code
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app as app
 from datetime import datetime, timezone
 
 from backend.models.event import InvestingEvent as Event
@@ -19,6 +19,7 @@ def get_all_events():
     Get a paginated list of all events, with optional filters for start and end dates.
     """
     try:
+        print(f"Handling get_all_events request: {request}.")
         start_date = request.args.get("start_date")
         end_date = request.args.get("end_date")
         limit = request.args.get("limit", default=10, type=int)
@@ -58,6 +59,7 @@ def get_all_events():
         if more:
             response["next_cursor"] = cursor + limit
 
+        print(f"Finished get_listings response: {response}.")
         return jsonify(response)
 
     except Exception as e:

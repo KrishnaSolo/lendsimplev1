@@ -1,7 +1,7 @@
 # Property service code
 from json import JSONEncoder
 from typing import List
-from flask import Blueprint, jsonify, current_app
+from flask import Blueprint, jsonify, current_app as app
 from flask_cors import cross_origin
 from backend.utils.logging import setup_logging
 
@@ -44,10 +44,10 @@ class PropertyEncoder(JSONEncoder):
 @property_blueprint.route("/get_listings", methods=["GET"])
 @cross_origin()
 def get_listings():
+    print("Handling get_listings request.")
     # Get all active events
-    print(Event.query.all())
     events = get_active_events()
-    print(events)
+
     # Get all properties with active events
     properties = []
     for event in events:
@@ -88,4 +88,5 @@ def get_listings():
                 }
             )
 
+    print("Completed get_listings request.")
     return jsonify(properties), 200

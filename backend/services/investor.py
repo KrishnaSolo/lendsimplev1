@@ -1,5 +1,5 @@
 # Investor service code
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app as app
 from werkzeug.exceptions import BadRequest
 
 from backend.models.investor import Investor
@@ -13,12 +13,14 @@ investor_bp = Blueprint("investor", __name__, url_prefix="/api/investor")
 @record_execution_time
 def create_investor():
     try:
+        app.logger.info(f"Handling create_investor request:{request}.")
         data = request.get_json()
         if not data:
             raise BadRequest("No data provided")
         investor = Investor(**data)
         db.session.add(investor)
-        db.session.commit()
+        res = db.session.commit()
+        app.logger.info(f"Added investor to DB: {res}")
         return jsonify(investor.to_dict()), 201
     except Exception as e:
         db.session.rollback()
@@ -28,9 +30,11 @@ def create_investor():
 @investor_bp.route("/<investor_id>", methods=["GET"])
 @record_execution_time
 def get_investor(investor_id):
+    app.logger.info(f"Handling get_investor request: {investor_id}, {request}.")
     investor = Investor.query.get(investor_id)
     if not investor:
         raise BadRequest(f"Investor with ID {investor_id} not found")
+    app.logger.info(f"Found investor: {investor}")
     return jsonify(investor.to_dict())
 
 
